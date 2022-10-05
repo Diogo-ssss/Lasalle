@@ -1,0 +1,64 @@
+// nome usuario GITHUB: Diogo-SSSS
+
+#include <stdio.h> // inclui o arquivo cabeçalho da biblioteca de propósito geral padrão da linguagem de programação C
+#include <math.h> // inclui biblioteca para operações matematicas; fonte: http://linguagemc.com.br/a-biblioteca-math-h/
+
+int main() { // A função main pode retornar um inteiro para o sistema operacional e o retorno zero indica ao SO que o programa foi bem sucedido. fonte: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://www.univasf.edu.br/~criston.souza/algoritmos/arquivos/aula10.1.pdf
+
+  char op; // define a variavel op (operação matematica) como tipo CHAR
+  float first, second; // define as variaveis first (primeiro operando) e second (segundo operando) como tipo FLOAT.
+  printf("Autor: Diogo Santos da Silva\n");
+  printf("Curso: Análise e Desenvolvimento de Sistemas\n");
+  printf("Universidade: Unilasalle\n");
+  printf("Matricula: 202210160\n"); // mostra na tela os dados gerais solicitados na tarefa
+  printf("\n");
+  do { // inicio do loop de repetição do-while. Mais detalhes a seguir.
+    printf("Selecione uma operação (+, -, *, /, ^, r): ");
+    scanf("%c", &op); // define a operação escolhida na variavel op 
+    getchar();
+    
+        if (op !='+' && op != '-' && op != '*' && op != '/' && op != '^' && op != 'r' ) {
+            printf("Digite um operador valido!\n"); // caso a operação escolhida não seja valida, mostrará essa menssagem de erro na tela.
+        }
+        
+    } while (op != '+' && op != '-' && op != '*' && op != '/' && op != '^' && op != 'r'); //loop while-do que ficará em repetição até o usuario digitar uma operação valida. fonte: https://www.inf.pucrs.br/~pinho/LaproI/ComandosDeRepeticao/Repeticao.html
+    
+  printf("Digite o primeiro operando: ");
+  scanf("%f", &first); // define o primeiro operando na variavel first
+  switch (op) { // switch case tem função igual a estrutura de decisão if. fonte: http://linguagemc.com.br/o-comando-switch-case-em-c/
+      case 'r': // caso a operação escolhida seja raiz quadrada, o programa pula direto para a instrução de calculo, não será necessario digitar um segundo numero. O calculo será efetuado somente com o primeiro numero digitado.
+        printf("√ %.1lf = %.1lf", first, sqrt(first)); // mostra na tela o calculo referente a raiz quadrada do primeiro numero digitado. Função sqrt(), que calcula a raiz quadrada do primeiro operando, é oriunda da biblioteca math.h.
+        break; // encerra o programa
+      default: // para qualquer outra operação escolhida alem de 'r', o programa da sequencia, que no caso é a solicitação um segundo numero para calculo, pois o restante das operações exigem dois numeros digitados.
+        printf("Digite o segundo operando: ");
+        scanf("%f", &second); // define o segundo operando na variavel second
+        switch (op) { // switch case tem função igual a estrutura de decisão if. fonte: http://linguagemc.com.br/o-comando-switch-case-em-c/f.
+            case '+': // caso a operação digitada seja +, é feito a soma do primeiro e do segundo numero e mostra na tela o resultado:
+                printf("%.1lf + %.1lf = %.1lf", first, second, first + second);
+                break;
+            case '-': // caso a operação digitada seja -, é feito a subtração do primeiro com o segundo numero e mostra na tela o resultado:
+                printf("%.1lf - %.1lf = %.1lf", first, second, first - second);
+                break;
+            case '*': // caso a operação digitada seja *, é feito a multiplicação do primeiro com o segundo numero e mostra na tela o resultado:
+                printf("%.1lf * %.1lf = %.1lf", first, second, first * second);
+                break;
+            case '/': // caso a operação digitada seja /, é feito a divisão do primeiro com o segundo numero e mostra na tela o resultado, com exeção da situação logo abaixo:
+                if (second == 0) { // caso seja selecionada a operação /, e o segundo numero digitado seja ZERO, mostra uma mensagem de erro:
+                    printf("Nenhum numero pode ser dividido por ZERO.");
+                    break;
+                }
+                printf("%.1lf / %.1lf = %.1lf", first, second, first / second);
+                break;
+            case '^': // caso a operação digitada seja ^, é feito a potencia do primeiro numero elevado ao segundo numero e mostra na tela o resultado:
+                printf("%.1lf ** %.1lf = %.1lf", first, second, pow(first, second)); // Função powt(), que calcula a potencia entre 2 numeros, é oriunda da biblioteca math.h.
+                break;
+        }
+}
+  return 0; // O retorno zero indica ao SO que o programa foi bem sucedido (ver comentarios da "int main()" no inicio do programa para maiores detalhes). Cada outro número retornado indica o código de uma condição de erro. fonte: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/http://www.univasf.edu.br/~criston.souza/algoritmos/arquivos/aula10.1.pdf
+}
+
+// essa calculadora foi baseada no seguinte projeto: https://www.programiz.com/c-programming/examples/calculator-switch-case
+
+// operadores em c: https://pt.wikipedia.org/wiki/Operadores_em_C_e_C%2B%2B
+
+// quebra de linhas: https://pt.stackoverflow.com/questions/474388/onde-usar-o-n-no-printf
